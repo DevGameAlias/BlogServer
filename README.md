@@ -6,6 +6,20 @@ Unique
 Ricardo 
 Sam 
 
+Server Side Routers and Schemas:
+
+Blog Creation: Get, Post, Put, Delete
+Story Creation: Get, Post, Put, Delete
+Event Creation: Get, Post, Put, Delete
+Author Profile: Get, Put,
+User Comment Blog: Post, Delete,Put
+User Story Review: Post, Put, Delete
+User Email sign up: Put
+Gets:
+Home Page, Story page, Blog page, Event Page, About page,
+
+
+
 What is the primary purpose of website? (Social media following? Showcase??  	Promoting product??)  
 
 Schedule meet next Monday (10/7 - 30-45mins) 
