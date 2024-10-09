@@ -33,3 +33,4 @@ const authorSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+module.exports = { Author, NewsletterSignup };
