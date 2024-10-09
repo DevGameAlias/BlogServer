@@ -7,14 +7,14 @@ Ricardo
 Sam 
 
 Server Side Routers and Schemas:
-Author Schema:
-Newsletter Schema:
-Blog Schema:
-Story Schema:
-Comments Schema:
-Events Schema:
-Song Schema:
-Story Review Schema:
+Author Schema: Unique
+Newsletter Schema:Unique
+Blog Schema: Lucy 
+Story Schema:Lucy
+Comments Schema:Ricardo
+Events Schema:Sam
+Song Schema:Sam
+Story Review Schema:Ricardo
 
 Blog Creation: Get, Post, Put, Delete
 Story Creation: Get, Post, Put, Delete
