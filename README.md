@@ -16,15 +16,19 @@ Events Schema:Sam
 Song Schema:Sam
 Story Review Schema:Ricardo
 
-Blog Creation: Get, Post, Put, Delete
-Story Creation: Get, Post, Put, Delete
-Event Creation: Get, Post, Put, Delete
-Author Profile: Get, Put,
-User Comment Blog: Post, Delete,Put
-User Story Review: Post, Put, Delete
-User Email sign up: Put
+Blog Creation: Get, Post, Put, Delete - Unique
+Story Creation: Get, Post, Put, Delete - Lucy
+Event Creation: Get, Post, Put, Delete - Sam
+Author Profile: Get, Put, - Ricardo 
+User Comment Blog: Post, Delete,Put - Unique
+User Story Review: Post, Put, Delete - Ricardo
+User Email sign up: Put - Lucy
 Gets:
-Home Page, Story page, Blog page, Event Page, About page
+Home Page - Sam
+Story page - Sam
+Blog page - Unique
+Event Page - Ricardo
+About page - Lucy
 
 
 
