@@ -1,4 +1,5 @@
 // Newsletter Signup Schema
+const mongoose = require("mongoose");
 const newsletterSignupSchema = new mongoose.Schema({
     email: {
       type: String,
