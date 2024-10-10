@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Newsletter = require('../Models/Newsletter');
+const mongoose = require('mongoose')
 
 // sign up for newsletter
 router.post('/signup', async (req, res) => {
