@@ -1,5 +1,7 @@
 // Newsletter Signup Schema
-const mongoose = require("mongoose");
+
+const mongoose = require('mongoose')
+
 const newsletterSignupSchema = new mongoose.Schema({
     email: {
       type: String,
@@ -18,7 +20,7 @@ const newsletterSignupSchema = new mongoose.Schema({
     }
   });
   
-  const Author = mongoose.model('Author', authorSchema);
+  
   const NewsletterSignup = mongoose.model('NewsletterSignup', newsletterSignupSchema);
   
-  module.exports = { Author, NewsletterSignup };
+  module.exports = { NewsletterSignup };
