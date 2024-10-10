@@ -1,14 +1,14 @@
 //const mongoose = require('mongoose');
 
-const blogSchema = new mongoose.Schema(
+const blogPostSchema = new mongoose.Schema(
     {
         title: {
             type: String,
-            require:true,
+            required:true,
         },
         content: {
             type: String,
-            require: true,
+            required: true,
          },
          author: {
             type: String, // could be the authors id or name?
