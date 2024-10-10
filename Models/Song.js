@@ -1,4 +1,4 @@
-const { mongoose } = require("mongoose");
+const mongoose  = require("mongoose");
 
 const Song = new mongoose.Schema({
   Artist: {
