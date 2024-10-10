@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const blogRoutes = require('../Model/blog.js');
+const blogRoutes = require('../Models/blog.js');
 const authMiddleware = require('../middleware/authMiddleware');
 
 // Blog CRUD operations

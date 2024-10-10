@@ -1,4 +1,4 @@
-//const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const blogPostSchema = new mongoose.Schema(
     {

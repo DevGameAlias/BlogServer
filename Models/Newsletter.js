@@ -20,4 +20,4 @@ const newsletterSignupSchema = new mongoose.Schema({
   const Author = mongoose.model('Author', authorSchema);
   const NewsletterSignup = mongoose.model('NewsletterSignup', newsletterSignupSchema);
   
-  module.exports = { Author, NewsletterSignup };
+  module.exports = { NewsletterSignup };
