@@ -25,4 +25,4 @@ const shortStorySchema = new mongoose.Schema({
 
 const ShortStory = mongoose.model('ShortStory', shortStorySchema);
 
-model.exports = ShortStory;
+module.exports = ShortStory;
