@@ -1,12 +1,12 @@
 const { mongoose } = require("mongoose");
 
-const Song = new mongoose.Schema({
-  Artist: {
-    type: String,
+const Event = new mongoose.Schema({
+  Date: {
+    type: Date,
     required: true,
   },
-  Title: {
-    type: String,
+  Location: {
+    type: Location,
     required: true,
   },
   Description: {
@@ -15,4 +15,4 @@ const Song = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Song", Song);
+module.exports = mongoose.model("Event", Event);
