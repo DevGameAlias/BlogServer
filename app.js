@@ -16,8 +16,8 @@ app.use(cors());
 app.use(cookieParser())
 
 // use routes
-//app.use("/newsletter", newsletterRoutes); 
-//app.use("/stories", storyRoute);
+app.use("/newsletter", newsletterRoutes); 
+app.use("/stories", StoryRoute);
 
 
 app.listen(PORT, () => {
