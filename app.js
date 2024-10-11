@@ -6,9 +6,11 @@ const cookieParser = require("cookie-parser");
 const { dbConnect } = require("./db");
 const PORT = process.env.PORT;
 
-// import router
-const StoryRoute = require("./routers/storyRoute");
-const newsletterRoutes = require("./routers/newsletterRoute"); 
+// Import routers
+const StoryRoute = require('./routers/storyRoute');
+const newsletterRoutes = require('./routers/newsletterRoute'); 
+//const blogRoutes = require('./routers/blogRoutes');
+
 
 // const blogRoutes = require('./routers/blogRoutes')
 //Middleware
