@@ -10,10 +10,12 @@ const PORT = process.env.PORT;
 const StoryRoute = require("./routers/storyRoute");
 const newsletterRoutes = require("./routers/newsletterRoute"); 
 
+// const blogRoutes = require('./routers/blogRoutes')
 //Middleware
 app.use(express.json());
 app.use(cors());
-app.use(cookieParser())
+app.use(cookieParser());
+// app.use("/blog", blogRoutes);
 
 // use routes
 //app.use("/newsletter", newsletterRoutes); 
