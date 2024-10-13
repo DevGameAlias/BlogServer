@@ -9,15 +9,18 @@ const PORT = process.env.PORT;
 // import router
 const StoryRoute = require("./routers/storyRoute");
 const newsletterRoutes = require("./routers/newsletterRoute"); 
+const StoryReview  = require('./routers/StoryReview')
 
 //Middleware
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser())
 
+
 // use routes
-//app.use("/newsletter", newsletterRoutes); 
-//app.use("/stories", storyRoute);
+app.use("/newsletter", newsletterRoutes); 
+app.use("/stories", StoryRoute);
+app.use("/review", StoryReview)
 
 
 app.listen(PORT, () => {

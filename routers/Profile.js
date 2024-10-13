@@ -6,6 +6,7 @@ const Author = require("../Models/Author") // Import User model
 const jwt = require("jsonwebtoken");
 const JWT_KEY = process.env.JWT_KEY;
 const SALT = Number(process.env.SALT);
+const router = express.Router();
 
 router.post("/login", async (req, res) => {
     const { username, password } = req.body;
@@ -46,5 +47,9 @@ router.post("/login", async (req, res) => {
       res.status(500).json({ message: "Error logging in" });
     }
   });
+
+  router.post("/request-reset", async (req,res) => {
+    const {username} = req.body;
+  })
   
   module.exports = router;

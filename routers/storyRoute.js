@@ -11,7 +11,8 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const stories = await ShortStory.find(); // fetch all stories
-        res.status(200).json(stories);
+        // res.status(200).json(stories);
+        res.send("test")
     } catch (err) {
         res.status(500).json({ error: 'Failed to fetch stories'});
     }
