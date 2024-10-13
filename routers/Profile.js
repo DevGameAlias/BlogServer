@@ -47,9 +47,45 @@ router.post("/login", async (req, res) => {
       res.status(500).json({ message: "Error logging in" });
     }
   });
-
+//password request route
   router.post("/request-reset", async (req,res) => {
-    const {username} = req.body;
+    const {email} = req.body;
+
+    try{
+        const user = await User.findeOne({email});
+        if(!user){
+            return res.status(400).json({message: "User not found"});
+        }
+        //create reset token
+        const token = jwt.sign({id: user._id}, JWT_KEY, {expiresIn:'1h'})
+        }
+        catch(error){
+            console.log(error);
+            res.status(500).json({message: "Error requesting password reset"})
+            
+        }
   })
+
+  router.post("/reset-password", async (req,res) =>{
+    const {token, newPassword} = req.body;
+
+    try{
+        //verify JWT
+        const decoded = jwt.verify(token, JWT_KEY);
+        const userId = decoded.id;
+
+        const hashedPassword = await bcrypt.hash(newPassword, SALT);
+
+        await User.findByIdAndUpdate(userId, { password: hashedPassword })
+        res.status(200).json({message:"Password has been reset"})
+
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({ message: "Error resetting password" });
+    }
+  })
+
+
   
   module.exports = router;
