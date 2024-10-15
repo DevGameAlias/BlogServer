@@ -11,6 +11,7 @@ const StoryRoute = require("./routers/storyRoute");
 const newsletterRoutes = require("./routers/newsletterRoute"); 
 const storyReview = require('./routers/StoryReview')
 const eventRoutes = require('./routers/EventCreation')
+const homePage = require('./routers/homePage')
 
 //Middleware
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(cookieParser())
 app.use("/events",eventRoutes)
 app.use('/stories', storyReview)
+app.use('/Home',homePage) 
 
 // use routes
 //app.use("/newsletter", newsletterRoutes); 
