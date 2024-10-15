@@ -4,7 +4,7 @@ const Blog = require('../Models/Blog');
 const Comment = require('../Models/Comment');
 
 // POST a comment on a blog
-router.post('/blogs/:id/comments', async (req, res) => {
+router.post('/comments', async (req, res) => {
     const { content, author } = req.body;
     try {
         const blog = await Blog.findById(req.params.id);

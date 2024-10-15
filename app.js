@@ -10,7 +10,7 @@ const PORT = process.env.PORT;
 const storyRoute = require('./routers/storyRoute');
 const newsletterRoutes = require('./routers/newsletterRoute'); 
 const blogRoutes = require('./routers/blogroutes');
-const commentRoutes = require('./routers/commentroutes');
+const commentRoutes = require('./routers/commentRoutes');
 
 //Middleware
 app.use(express.json());
