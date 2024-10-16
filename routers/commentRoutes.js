@@ -5,8 +5,8 @@ const Comment = require('../Models/Comment');
 
 // Dummy comment data
 let comments = [
-  { id: 1, author: 'Author1', content: 'Great blog post!', blogId: 1 },
-  { id: 2, author: 'Author2', content: 'Very informative.', blogId: 1 }
+  { id: 1, author: 'Jane Doe', content: 'Great blog post!', blogId: 1 },
+  { id: 2, author: 'John Doe', content: 'Very informative.', blogId: 1 }
 ];
 
 // Create a new comment
@@ -22,32 +22,30 @@ router.get('/', (req, res) => {
   res.json(comments);
 });
 
-// Read a single comment
-router.get('/', (req, res) => {
+// Read a single comment by ID
+router.get('/:id', (req, res) => {
   const comment = comments.find(c => c.id == req.params.id);
   if (!comment) return res.status(404).json({ error: 'Comment not found' });
   res.json(comment);
 });
 
-// Update a comment
-router.put('/', (req, res) => {
+// Update a comment by ID
+router.put('/:id', (req, res) => {
   const { author, content, blogId } = req.body;
   const comment = comments.find(c => c.id == req.params.id);
   if (!comment) return res.status(404).json({ error: 'Comment not found' });
-
   comment.author = author;
   comment.content = content;
   comment.blogId = blogId;
   res.json(comment);
 });
 
-// Delete a comment 
-router.delete('/', (req, res) => {
+// Delete a comment by ID
+router.delete('/:id', (req, res) => {
   const commentIndex = comments.findIndex(c => c.id == req.params.id);
   if (commentIndex === -1) return res.status(404).json({ error: 'Comment not found' });
-
   comments.splice(commentIndex, 1);
   res.status(204).end();
 });
-
 module.exports = router;
+
