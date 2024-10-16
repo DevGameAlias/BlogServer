@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const bcrypt = require("bcrypt"); // Import bcrypt for password hashing
-const User = require("../models/User");
+// const User = require("../models/User");
 const Author = require("../Models/Author") // Import User model
 const jwt = require("jsonwebtoken");
 const JWT_KEY = process.env.JWT_KEY;
@@ -13,19 +13,19 @@ router.post("/login", async (req, res) => {
   
     try {
       // Check if the user exists
-      const user = await User.findOne({ username });
-      console.log(user);
+      const author = await Author.findOne({ username });
+      
   
-      if (!user) {
+      if (!author) {
         return res.status(400).json({ message: "User not found" });
       }
   
       // Compare the entered password with the stored hashed password
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, author.password);
       if (!isMatch) {
         return res.status(400).json({ message: "Invalid credentials" });
       }
-      const token = jwt.sign({ id: user._id }, JWT_KEY, {
+      const token = jwt.sign({ id: author._id }, JWT_KEY, {
         expiresIn: 60 * 60 * 24,
       });
       // this will set the cookie
@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
   
       res
         .status(200)
-        .json({ message: `authenticated user ${user.username}`, user, token });
+        .json({ message: `authenticated user ${author.username}`, author, token });
       console.log(token);
     } catch (error) {
       console.log(error);
@@ -52,12 +52,18 @@ router.post("/login", async (req, res) => {
     const {email} = req.body;
 
     try{
-        const user = await User.findeOne({email});
+        const user = await Author.findOne({ email });
         if(!user){
             return res.status(400).json({message: "User not found"});
         }
         //create reset token
         const token = jwt.sign({id: user._id}, JWT_KEY, {expiresIn:'1h'})
+
+      //TODO: Figure out what needs to go in the resetlink
+        const resetLink = `http://localhost:3000/reset-password/${token}`;
+        console.log(`Password reset link: ${resetLink}`);
+        res.status(200).json({message:"Reset link sent", resetLink})
+        
         }
         catch(error){
             console.log(error);
@@ -76,7 +82,7 @@ router.post("/login", async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(newPassword, SALT);
 
-        await User.findByIdAndUpdate(userId, { password: hashedPassword })
+        await Author.findByIdAndUpdate(userId, { password: hashedPassword })
         res.status(200).json({message:"Password has been reset"})
 
     }

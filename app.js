@@ -10,6 +10,7 @@ const PORT = process.env.PORT;
 const StoryRoute = require("./routers/storyRoute");
 const newsletterRoutes = require("./routers/newsletterRoute"); 
 const StoryReview  = require('./routers/StoryReview')
+const profile = require('./routers/Profile')
 
 //Middleware
 app.use(express.json());
@@ -21,6 +22,7 @@ app.use(cookieParser())
 app.use("/newsletter", newsletterRoutes); 
 app.use("/stories", StoryRoute);
 app.use("/review", StoryReview)
+app.use("/profile", profile)
 
 
 app.listen(PORT, () => {
