@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
         const stories = await ShortStory.find(); // fetch all stories
         res.status(200).json(stories);
     } catch (error) {
+
         res.status(500).json({ error: 'Failed to fetch stories'});
     }
 });

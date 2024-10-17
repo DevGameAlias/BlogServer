@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Blog = require('../Models/Blog'); 
-const Comment = require('../Models/Comment');  
+const blogRoutes = require('../Models/Blog.js');
+// const authMiddleware = require('../middleware/authMiddleware');
+
 
 // GET all blogs
 router.get('/blogs', async (req, res) => {
