@@ -11,6 +11,7 @@ const storyRoute = require('./routers/storyRoute');
 const newsletterRoutes = require('./routers/newsletterRoute'); 
 const blogRoutes = require('./routers/blogroutes');
 const commentRoutes = require('./routers/commentroutes');
+const blogPageRoutes = require('./routers/blogpageRoutes');
 
 //Middleware
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use(cookieParser());
 
 // use routes
 app.use("/blog", blogRoutes);
+app.use('/blogpages', blogPageRoutes);
 app.use("/comments", commentRoutes);
 app.use("/newsletter", newsletterRoutes); 
 app.use("/stories", storyRoute);
