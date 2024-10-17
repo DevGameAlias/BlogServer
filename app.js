@@ -14,6 +14,7 @@ const blogRoutes = require('./routers/blogroutes');
 const commentRoutes = require('./routers/commentroutes');
 const blogPageRoutes = require('./routers/blogpageRoutes');
 const eventRoutes = require('./routers/EventCreation')
+const storyReview = require('./routers/StoryReview')
 
 
 
