@@ -35,7 +35,7 @@ app.use("/comments", commentRoutes);
 app.use("/newsletter", newsletterRoutes); 
 app.use("/stories", storyRoute);
 app.use("/events",eventRoutes)
-app.use('/storiesReview', storyReview)
+app.use('/storyReview', StoryReview)
 
 app.listen(PORT, () => {
     dbConnect();
