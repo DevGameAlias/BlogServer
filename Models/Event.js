@@ -6,7 +6,7 @@ const Event = new mongoose.Schema({
     required: true,
   },
   Location: {
-    type: Location,
+    type: String,
     required: true,
   },
   Description: {

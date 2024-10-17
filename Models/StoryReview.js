@@ -1,34 +1,29 @@
-const { mongoose } = require("../db");
+const mongoose = require("mongoose");
 
 const StoryReview = new mongoose.Schema({
-
     author:{
         type: String,
         maxLength:20,
+        required: true
     },
-    // need to figure out story ID and tie to story schema
-    // storyId:{
-    //    
-
-    // },
     rating:{
         type: Number,
-        required: true,
         min: 1,
         max: 5,
+        required:true
     },
     body:{
         type: String,
-        required: true,
         maxLength: 1000,
         timestamp: true,
+        required: true
     },
     createdAt:{
         type:Date,
         default: Date.now
-        
-    }
+    },
+},
+{ timestamps: true })
 
-})
 
-module.exports = mongoose.model ('storyreview', StoryReview)
+module.exports = mongoose.model("StoryReview", StoryReview)

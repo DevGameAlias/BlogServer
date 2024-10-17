@@ -27,7 +27,6 @@ Gets:
 Home Page - Sam
 Story page - Sam
 Blog page - Unique
-Event Page - Ricardo
 About page - Lucy
 
 
