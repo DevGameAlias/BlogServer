@@ -12,7 +12,6 @@ const StoryRoute = require("./routers/storyRoute");
 const newsletterRoutes = require("./routers/newsletterRoute"); 
 const storyReview = require('./routers/StoryReview')
 const eventRoutes = require('./routers/EventCreation')
-const homePage = require('./routers/homePage')
 
 
 //Middleware
@@ -21,15 +20,12 @@ app.use(cors());
 app.use(cookieParser())
 app.use("/events",eventRoutes)
 app.use('/stories', storyReview)
-app.use('/Home',homePage) 
+app.use("/newsletter", newsletterRoutes); 
+
 
 // use routes
-app.use("/newsletter", newsletterRoute); 
-app.use("/stories", StoryRoute);
-app.use('/about', (req, res, next) => {
-  console.log('About route hit');
-  next();
-}, aboutRoute);
+
+//app.use("/stories", storyRoute);
 
 
 
