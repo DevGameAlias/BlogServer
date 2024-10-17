@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+// Blog post schema
 const blogPostSchema = new mongoose.Schema(
     {
         title: {
