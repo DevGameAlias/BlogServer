@@ -13,6 +13,10 @@ const Song = new mongoose.Schema({
     type: String,
     required: true,
   },
+  Link:{
+    type:String,
+    required: true,
+  }
 });
 
 module.exports = mongoose.model("Song", Song);

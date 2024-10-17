@@ -12,10 +12,26 @@ router.get('/', async (req, res) => {
     try {
         const stories = await ShortStory.find(); // fetch all stories
         res.status(200).json(stories);
-    } catch (err) {
+    } catch (error) {
         res.status(500).json({ error: 'Failed to fetch stories'});
     }
 });
+
+// get story by id
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const story = await ShortStory.findById(id); // find the story by ID
+        if (!story) {
+            return res.status(404).json({ error: 'Story not found' });
+        }
+        res.status(200).json(story); // return the found story
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch story' });
+    }
+});
+
 
 // create new story
 router.post('/', async (req, res) => {
