@@ -18,9 +18,10 @@ app.use(cors());
 app.use(cookieParser())
 app.use("/events",eventRoutes)
 app.use('/stories', storyReview)
+app.use("/newsletter", newsletterRoutes); 
+
 
 // use routes
-//app.use("/newsletter", newsletterRoutes); 
 //app.use("/stories", storyRoute);
 
 
