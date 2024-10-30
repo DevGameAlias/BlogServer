@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const blogRoutes = require('../Models/blog.js');
+const Blog = require('../Models/blog.js');
 // const authMiddleware = require('../middleware/authMiddleware');
 
 
@@ -8,8 +8,11 @@ const blogRoutes = require('../Models/blog.js');
 router.get('/blogs', async (req, res) => {
     try {
         const blogs = await Blog.find();
+        console.log(Blog);
+        
         res.status(200).json(blogs);
     } catch (err) {
+        console.log(err)
         res.status(500).json({ error: 'Unable to retrieve blogs' });
     }
 });
@@ -23,6 +26,8 @@ router.get('/blogs/:id', async (req, res) => {
         }
         res.status(200).json(blog);
     } catch (err) {
+     
+
         res.status(500).json({ error: 'Unable to retrieve the blog' });
     }
 });
