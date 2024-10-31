@@ -5,7 +5,7 @@ const shortStorySchema = new mongoose.Schema({
         type: String,
         required:true,
     },
-    genre: {
+    description: {
         type: String,
         required: true,
     },
