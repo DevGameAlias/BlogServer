@@ -15,7 +15,7 @@ const shortStorySchema = new mongoose.Schema({
     },
     author: {
         type: String, // can be id or authors name
-        required: true,
+        required: false,
     },
     createdAt: {
         type: Date,

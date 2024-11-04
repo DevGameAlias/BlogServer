@@ -33,7 +33,7 @@ router.get('/blogs/:id', async (req, res) => {
 });
 
 // POST a new blog
-router.post('/blogs', async (req, res) => {
+router.post('/blogs', tokenValidation, async (req, res) => {
     const { title, content, author, tags } = req.body;
     try {
         const newBlog = new Blog({
@@ -50,7 +50,7 @@ router.post('/blogs', async (req, res) => {
 });
 
 // PUT (Update) a blog by ID
-router.put('/blogs/:id', async (req, res) => {
+router.put('/blogs/:id', tokenValidation, async (req, res) => {
     const { title, content, tags } = req.body;
     try {
         const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, {
@@ -71,7 +71,7 @@ router.put('/blogs/:id', async (req, res) => {
 });
 
 // DELETE a blog by ID
-router.delete('/blogs/:id', async (req, res) => {
+router.delete('/blogs/:id', tokenValidation, async (req, res) => {
     try {
         const deletedBlog = await Blog.findByIdAndDelete(req.params.id);
         if (!deletedBlog) {

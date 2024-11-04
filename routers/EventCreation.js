@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.post('/create',async (req, res) => {
+router.post('/create', tokenValidation, async (req, res) => {
     
     try {
         // create new room from body
@@ -27,7 +27,7 @@ router.post('/create',async (req, res) => {
     }
 })
 
-router.put('/update/:eventId',async (req, res) => {
+router.put('/update/:eventId', tokenValidation, async (req, res) => {
     
     try {
         // create event id
@@ -42,7 +42,7 @@ router.put('/update/:eventId',async (req, res) => {
     }
 })
 
-router.delete('/delete/:eventId',async (req, res) => {
+router.delete('/delete/:eventId', tokenValidation, async (req, res) => {
     try {
         // create event id
         const eventID = req.params.eventId;
