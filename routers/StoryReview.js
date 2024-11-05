@@ -1,6 +1,10 @@
 require("dotenv").config();
 const express = require("express");
+<<<<<<< HEAD
 const router = express.Router();
+=======
+const router = express.Router()
+>>>>>>> d2b38042b244a8f9888c9fe5d7a5725befbbc55a
 const sReview = require("../Models/StoryReview")
 
 
