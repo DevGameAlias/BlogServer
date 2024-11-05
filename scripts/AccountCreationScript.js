@@ -9,7 +9,7 @@ const SALT = Number(process.env.SALT);
 async function createOwner(){
     //owner credentials
     const username = "codeTeam"
-    const email = "email@email.com"// will create a new email to test password reset
+    const email = "codeteamblog@outlook.com"// will create a new email to test password reset
     const password = "1q2e@3r8t!"
 
     try{

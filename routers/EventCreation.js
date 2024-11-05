@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const Event = require("../Models/Event")
+const tokenValidation = require('../middlewares/tokenValidation.js');
+
 //get router for events
 router.get("/", async (req, res) => {
     try {

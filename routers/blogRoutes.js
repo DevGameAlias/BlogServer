@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../Models/blog.js');
-// const authMiddleware = require('../middleware/authMiddleware');
+const tokenValidation = require('../middlewares/tokenValidation.js');
 
 
 // GET all blogs
