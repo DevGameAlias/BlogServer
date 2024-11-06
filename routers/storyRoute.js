@@ -1,6 +1,7 @@
 const express = require("express");
 const ShortStory = require("../Models/story"); // path to model/schema
 const router = express.Router();
+const tokenValidation = require("../middlewares/tokenValidation.js");
 
 //const { body, validationResult } = require('express-validator'); // For input validation
 
@@ -32,7 +33,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // create new story
-router.post("/", async (req, res) => {
+router.post("/", tokenValidation, async (req, res) => {
   const newStory = new ShortStory(req.body); // create a new story instance
 
   try {
@@ -44,7 +45,7 @@ router.post("/", async (req, res) => {
 });
 
 // update story
-router.put("/:id", async (req, res) => {
+router.put("/:id", tokenValidation, async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -61,7 +62,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // delete story by id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", tokenValidation, async (req, res) => {
   const { id } = req.params;
 
   try {
