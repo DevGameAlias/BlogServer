@@ -14,6 +14,19 @@ const newsletterSignupSchema = new mongoose.Schema({
       message: (props) => `${props.value} is not a valid email address!`,
     },
   },
+  signupType: {
+    type: String,
+    enum: ["newsletter", "event"],
+    required: true,
+    default: "newsletter",
+  },
+  eventId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Event",
+    required: function () {
+      return this.signupType === "event";
+    },
+  },
   createdAt: {
     type: Date,
     default: Date.now,
