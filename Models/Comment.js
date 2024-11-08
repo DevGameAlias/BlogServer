@@ -10,10 +10,12 @@ const commentSchema = new mongoose.Schema({
     required: true,
     maxLength: 1000,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  }
+  blogId: {
+    type: mongoose.Schema.Types.ObjectId, // Store the ObjectId of the related blog
+    ref: 'Blog', // Reference to the Blog model
+    required: true, // Ensure each comment is linked to a blog
+  },
+  
 }, { timestamps: true });
 
 const Comment = mongoose.model('Comment', commentSchema);

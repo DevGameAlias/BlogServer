@@ -18,12 +18,15 @@ const StoryReview = new mongoose.Schema({
         timestamp: true,
         required: true
     },
-    createdAt:{
-        type:Date,
-        default: Date.now
-    },
+    storyId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Story', // Reference to the Story model
+        required: true
+    }
+    
 },
 { timestamps: true })
+
 
 
 module.exports = mongoose.model("StoryReview", StoryReview)
