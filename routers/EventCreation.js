@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Event = require("../Models/Event");
 const tokenValidation = require("../middlewares/tokenValidation.js");
+const {NewsletterSignup} = require('../Models/Newsletter.js')
 
 //get router for events
 router.get("/", async (req, res) => {
@@ -28,6 +29,22 @@ router.post("/create", tokenValidation, async (req, res) => {
   }
 });
 
+router.post('/:eventId/signup', async (req,res) => {
+  try{
+    const {eventId} = req.params;
+    const {email} =req.body;
+    console.log("Signing up for event:", eventId, "with email:", email);
+    const signup = new NewsletterSignup({email, signupType: 'event', eventId});
+    await signup.save()
+    console.log("Signup successful:", signup);
+    res.status(201).json(signup);
+  }catch(error){
+    console.error('Error signing up for event:' , error)// checking error
+    res.status(500).json({error: error.message})
+
+  }
+})
+//route for user to sign up
 router.put("/update/:eventId", tokenValidation, async (req, res) => {
   try {
     // create event id

@@ -1,15 +1,15 @@
 const { mongoose } = require("mongoose");
 
 const Event = new mongoose.Schema({
-  Date: {
+  defaultate: {
     type: Date,
     required: true,
   },
-  Location: {
+  location: {
     type: String,
     required: true,
   },
-  Description: {
+  description: {
     type: String,
     required: true,
   },
