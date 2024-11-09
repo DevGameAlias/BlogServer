@@ -1,12 +1,18 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const BlogPage = require('../Models/BlogPage');
+const BlogPage = require("../Models/BlogPage");
 
 // Create a new blog page
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { pageTitle, posts, author, description, bannerImage } = req.body;
-    const newBlogPage = new BlogPage({ pageTitle, posts, author, description, bannerImage });
+    const newBlogPage = new BlogPage({
+      pageTitle,
+      posts,
+      author,
+      description,
+      bannerImage,
+    });
     await newBlogPage.save();
     res.status(201).json(newBlogPage);
   } catch (error) {
@@ -15,9 +21,9 @@ router.post('/', async (req, res) => {
 });
 
 // Read all blog pages
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const blogPages = await BlogPage.find().populate('posts');
+    const blogPages = await BlogPage.find().populate("posts");
     res.json(blogPages);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -25,10 +31,11 @@ router.get('/', async (req, res) => {
 });
 
 // Read a single blog page by ID
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const blogPage = await BlogPage.findById(req.params.id).populate('posts');
-    if (!blogPage) return res.status(404).json({ error: 'Blog page not found' });
+    const blogPage = await BlogPage.findById(req.params.id).populate("posts");
+    if (!blogPage)
+      return res.status(404).json({ error: "Blog page not found" });
     res.json(blogPage);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -36,7 +43,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update a blog page by ID
-router.put('/:id', async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const { pageTitle, posts, author, description, bannerImage } = req.body;
     const updatedBlogPage = await BlogPage.findByIdAndUpdate(
@@ -44,7 +51,8 @@ router.put('/:id', async (req, res) => {
       { pageTitle, posts, author, description, bannerImage },
       { new: true, runValidators: true }
     );
-    if (!updatedBlogPage) return res.status(404).json({ error: 'Blog page not found' });
+    if (!updatedBlogPage)
+      return res.status(404).json({ error: "Blog page not found" });
     res.json(updatedBlogPage);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -52,10 +60,11 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete a blog page by ID
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const deletedBlogPage = await BlogPage.findByIdAndDelete(req.params.id);
-    if (!deletedBlogPage) return res.status(404).json({ error: 'Blog page not found' });
+    if (!deletedBlogPage)
+      return res.status(404).json({ error: "Blog page not found" });
     res.status(204).end();
   } catch (error) {
     res.status(500).json({ error: error.message });
