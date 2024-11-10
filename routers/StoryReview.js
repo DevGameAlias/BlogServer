@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const sReview = require("../Models/StoryReview");
+const StoryReview = require("../Models/StoryReview");
 
 // POST - Create a new review for a short story
 router.post("/", async (req, res) => {
@@ -43,5 +44,22 @@ router.post("/", async (req, res) => {
         res.status(500).json({ error: "Failed to post review" });
     }
 });
+
+
+   // Get all reviews for a specific story by storyId
+router.get('/:storyId', async (req, res) => {
+    try {
+      const reviews = await StoryReview.find({ storyId: req.params.storyId }); // Find all reviews where storyId matches
+  
+      if (reviews.length === 0) {
+        return res.status(404).json({ error: 'No reviews found for this story' });
+      }
+  
+      res.json(reviews); // Return the list of reviews
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
 
 module.exports = router;

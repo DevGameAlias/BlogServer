@@ -23,9 +23,9 @@ const StoryReview = new mongoose.Schema({
         ref: 'Story', // Reference to the Story model
         required: true
     }
-    
 },
-{ timestamps: true })
+{ timestamps: true } // Automatically manage `createdAt` and `updatedAt`
+);
 
 
 
