@@ -3,11 +3,6 @@ const router = express.Router();
 const Blog = require('../Models/blog');
 const Comment = require('../Models/Comment');
 
-// // Dummy comment data
-// let comments = [
-//   { id: 1, author: 'Jane Doe', content: 'Great blog post!', blogId: 1 },
-//   { id: 2, author: 'John Doe', content: 'Very informative.', blogId: 1 }
-// ];
 
 // Create a new comment
 router.post('/', async (req, res) => {
