@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const StoryReview = new mongoose.Schema({
+const StoryReviewSchema = new mongoose.Schema({
     author:{
         type: String,
         maxLength:20,
@@ -18,12 +18,17 @@ const StoryReview = new mongoose.Schema({
         timestamp: true,
         required: true
     },
-    createdAt:{
-        type:Date,
-        default: Date.now
+    storyId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Story', // Reference to the Story model
+        required: true
     },
-},
-{ timestamps: true })
+    approved: {
+        type: Boolean,
+        default: false // Optional field for approval status (default to false)
+      }
+    }, { timestamps: true }); // Automatically manage `createdAt` and `updatedAt`
 
 
-module.exports = mongoose.model("StoryReview", StoryReview)
+
+module.exports = mongoose.model("StoryReview", StoryReviewSchema)
