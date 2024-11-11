@@ -32,6 +32,25 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Toggle approval of a comment by ID
+router.patch('/:id/toggle-approval', async (req, res) => {
+  try {
+    const comment = await Comment.findById(req.params.id);
+    if (!comment) return res.status(404).json({ error: 'Comment not found' });
+
+    // Toggle the approved status
+    comment.approved = !comment.approved;
+
+    // Save the updated comment
+    await comment.save();
+
+    // Return the updated comment
+    res.json(comment);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Get all comments for a specific blog
 router.get('/blog/:blogId', async (req, res) => {
   try {
@@ -73,12 +92,15 @@ router.put('/:id', async (req, res) => {
     }
   });
 
-// Delete a comment by ID
-router.delete('/', (req, res) => {
-  const commentIndex = comments.findIndex(c => c.id == req.params.id);
-  if (commentIndex === -1) return res.status(404).json({ error: 'Comment not found' });
-  comments.splice(commentIndex, 1);
-  res.status(204).end();
-});
-module.exports = router;
-
+  router.delete('/:id', async (req, res) => {
+    try {
+      const comment = await Comment.findByIdAndDelete(req.params.id); // Use findByIdAndDelete to find and delete the comment
+      if (!comment) return res.status(404).json({ error: 'Comment not found' });
+  
+      res.status(204).end(); // Successful deletion, no content to return
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+  module.exports = router;

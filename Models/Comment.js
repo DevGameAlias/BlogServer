@@ -16,6 +16,7 @@ const commentSchema = new mongoose.Schema({
     ref: 'Blog', // Reference to the Blog model
     required: true, // Ensure each comment is linked to a blog
   },
+  approved: { type: Boolean, default: false }, // New field for approval status
 },
 { timestamps: true } // Automatically manage `createdAt` and `updatedAt`
 );
