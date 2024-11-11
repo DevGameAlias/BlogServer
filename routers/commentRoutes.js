@@ -93,6 +93,9 @@ router.put('/:id', async (req, res) => {
   });
 
   router.delete('/:id', async (req, res) => {
+
+    let { id } = req.params; // Get the commentId from the URL parameters
+    
     try {
       const comment = await Comment.findByIdAndDelete(req.params.id); // Use findByIdAndDelete to find and delete the comment
       if (!comment) return res.status(404).json({ error: 'Comment not found' });
@@ -101,6 +104,34 @@ router.put('/:id', async (req, res) => {
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  });
-  
+  });const mongoose = require('mongoose');
+
+  router.delete('/:id', async (req, res) => {
+    let { id } = req.params; // Get the commentId from the URL parameters
+
+    // Trim and validate the ObjectId
+    id = id.trim();  // Remove any extra spaces or newline characters
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ error: 'Invalid commentId format' });
+    }
+
+    try {
+        // Find and delete the comment by its ID
+        const comment = await Comment.findByIdAndDelete(id);
+        if (!comment) {
+            return res.status(404).json({ error: 'Comment not found' });
+        }
+
+        // Return success message with 200 OK status
+        console.log('Comment deleted:', id);  // Log the ID of the deleted comment (for debugging)
+
+        res.status(200).json({ message: 'Comment deleted successfully', commentId: id });
+
+    } catch (error) {
+        console.error('Error deleting comment:', error); // Log the error to the console
+        res.status(500).json({ error: error.message });
+    }
+});
+
   module.exports = router;
