@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
-const sReview = require("../Models/StoryReview");
 const StoryReview = require("../Models/StoryReview");
 
 // POST - Create a new review for a short story
@@ -23,7 +22,7 @@ router.post("/", async (req, res) => {
 
     try {
         // Create a new review instance
-        const newReview = new sReview({
+        const newReview = new StoryReview({
             author,
             rating,
             body,
@@ -45,6 +44,25 @@ router.post("/", async (req, res) => {
     }
 });
 
+// Toggle approval of a comment by ID
+router.patch('/:id/toggle-approval', async (req, res) => {
+  try {
+    const review = await StoryReview.findById(req.params.id); // Use `review` to avoid confusion with the model name
+    if (!review) return res.status(404).json({ error: 'Comment not found' });
+
+    // Toggle the approved status
+    review.approved = !review.approved;
+
+    // Save the updated comment
+    await review.save();
+
+    // Return the updated comment
+    res.json(review);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
    // Get all reviews for a specific story by storyId
 router.get('/:storyId', async (req, res) => {
@@ -60,6 +78,30 @@ router.get('/:storyId', async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   });
+
+  // DELETE - Delete a review by ID
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params; // Extract the review ID from the request parameters
+
+  try {
+      // Find and delete the review by ID
+      const review = await StoryReview.findByIdAndDelete(id);
+
+      if (!review) {
+          // If no review is found, return a 404 error
+          return res.status(404).json({ error: "Review not found" });
+      }
+
+      // Successfully deleted, return a success message
+      res.status(200).json({
+          message: "Review deleted successfully",
+          reviewId: id,  // Optionally, return the deleted review ID
+      });
+  } catch (error) {
+      console.error("Error deleting review:", error);
+      res.status(500).json({ error: error.message });
+  }
+});
   
 
 module.exports = router;
