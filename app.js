@@ -15,7 +15,7 @@ const profile = require('./routers/Profile')
 // Import routers
 const storyRoute = require('./routers/storyRoute');
 const newsletterRoutes = require('./routers/newsletterRoute'); 
-const blogRoutes = require('./routers/blogroutes');
+const blogRoutes = require('./routers/blogRoutes');
 const commentRoutes = require('./routers/commentRoutes');
 const blogPageRoutes = require('./routers/blogpageRoutes');
 const eventRoutes = require('./routers/EventCreation')
