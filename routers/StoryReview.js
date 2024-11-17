@@ -79,6 +79,24 @@ router.get('/:storyId', async (req, res) => {
     }
   });
 
+  // GET all reviews, sorted by the creation date (newest first)
+router.get("/", async (req, res) => {
+  try {
+    // Fetch all reviews, sorted by 'createdAt' in descending order (newest first)
+    const reviews = await StoryReview.find().sort({ createdAt: -1 });
+
+    if (reviews.length === 0) {
+      return res.status(404).json({ error: 'No reviews found' });
+    }
+
+    // Send the reviews back in the response
+    res.json(reviews); // Return the list of reviews
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
   // DELETE - Delete a review by ID
 router.delete("/:id", async (req, res) => {
   const { id } = req.params; // Extract the review ID from the request parameters
