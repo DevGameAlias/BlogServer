@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../Models/blog');
 const Comment = require('../Models/Comment');
+const mongoose = require("mongoose");
 
 
 // Create a new comment
@@ -64,6 +65,17 @@ router.get('/blog/:blogId', async (req, res) => {
   }
 });
 
+// Get all comments, sorted from newest to oldest
+router.get('/all', async (req, res) => {
+  try {
+    const comments = await Comment.find()
+      .sort({ createdAt: -1 }); // -1 for descending order (newest first)
+    res.json(comments);
+  } catch (error) {
+    console.error("Error fetching comments:", error); // Add this line to log the error
+    res.status(500).json({ error: error.message });
+  }
+});
   
   // Read a single comment by ID
   router.get('/:id', async (req, res) => {
