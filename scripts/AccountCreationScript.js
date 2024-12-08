@@ -1,47 +1,57 @@
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, '../.env') });
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const Author = require("../Models/Author")
+
+// Log the current working directory
+console.log("Current working directory:", process.cwd());
+
+// Adjust the path to the Author model if necessary
+const authorPath = path.join(__dirname, "../Models/Author");
+const Author = require(authorPath);
+
+
 
 const JWT_KEY = process.env.JWT_KEY;
 const SALT = Number(process.env.SALT);
-//creating owner with function to have credentials to test out routes
-async function createOwner(){
-    //owner credentials
-    const username = "codeTeam"
-    const email = "email@email.com"// will create a new email to test password reset
-    const password = "1q2e@3r8t!"
+const DB_URL = process.env.DB_URL;
+const USRNM = process.env.USRNM;
+const PSSWRD = process.env.PSSWRD;
+const EML = process.env.EML;
 
-    try{
+// Log environment variables to debug
+
+
+//creating owner with function to have credentials to test out routes
+async function createOwner() {
+    //owner credentials
+    const username = USRNM;
+    const email = EML;
+    const password = PSSWRD;
+
+    try {
         //connecting to MongoDB
-        await mongoose.connect(process.env.DB_URL, {
+        await mongoose.connect(DB_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-        })
+        });
 
-
-        const hashedPassword = await bcrypt.hash(password,SALT);
+        const hashedPassword = await bcrypt.hash(password, SALT);
 
         //creating user
         const author = new Author({
-           name: username,
+            name: username,
             email,
-            password: hashedPassword
-        })
+            password: hashedPassword,
+        });
 
         await author.save();
         console.log("author created");
-        
-
-
-    }
-    catch(error){
-        console.error("error creating account", error)
-    }
-    finally{
+    } catch (error) {
+        console.error("error creating account", error);
+    } finally {
         await mongoose.connection.close();
     }
-
 }
 
 createOwner();
