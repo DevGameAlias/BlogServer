@@ -3,14 +3,20 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Author = require("../Models/Author")
 
+
 const JWT_KEY = process.env.JWT_KEY;
 const SALT = Number(process.env.SALT);
+
+const USRNM = process.env.USRNM
+const PSSWRD = process.env.PSSWRD
+const EML = process.env.EML
+
 //creating owner with function to have credentials to test out routes
 async function createOwner(){
     //owner credentials
-    const username = "codeTeam"
-    const email = "email@email.com"// will create a new email to test password reset
-    const password = "1q2e@3r8t!"
+    const username = USRNM 
+    const email = EML 
+    const password = PSSWRD
 
     try{
         //connecting to MongoDB
